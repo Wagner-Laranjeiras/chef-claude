@@ -3,12 +3,10 @@ import { useState } from "react";
 const AddIngredient = (props) => {
     const [ingredients, setIngredients] = useState( [] )
     const ingredientsListItems = ingredients.map( (ingredient) => {
-        return <li>{ ingredient }</li>
+        return <li key={ingredient}>{ ingredient }</li>
     })
 
-    function handleSubmit(e) {
-        const formData = new FormData(e.currentTarget);
-        e.preventDefault();
+    function handleSubmit(formData) {
         const newIngredient = formData.get('ingredient');
 
         setIngredients((prevIngredients) =>
@@ -28,69 +26,25 @@ const AddIngredient = (props) => {
             prevIngredients.filter(ingredient => ingredient !== ingredientToRemove)
         )
     }
+    ///////////////////////////////////////////////////////////////////////////////////
+    function handleForm(formData) {
+        const email = formData.get('username');
+        const status = formData.get('employmentStatus');
+        const dietaryRestrictions = formData.getAll('dietaryRestrictions');
+        const favColor = formData.get('favColor');
+        console.log(favColor)
+        console.log(dietaryRestrictions);
+        console.log(status);
+        console.log(email);
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-    const [count, setCount ] = useState(0);
-
-    function handleAdd() {
-        console.log("Subtracted.")
-        setCount((prevCount) => prevCount + 1);
     }
-
-    function handleSubtract() {
-        console.log("Added.")
-        setCount((prevCount) => prevCount - 1);
-    }
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    const [isGoingOut, setIsGoingOut] = useState(false);
-    let isGoingOutAnswer = isGoingOut ? "Yes" : "Nop";
-
-    function handleGoingOut() {
-        setIsGoingOut((prevIsGoingOut) => !prevIsGoingOut);
-    }
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    const favoriteThingsSong = [
-        "Raindrops on roses",
-        "Whiskers on kittens",
-        "Bright copper kettles",
-        "Warm woolen mittens",
-        "Brown paper packages tied up with strings",
-        "Cream-colored ponies",
-        "Crisp apple strudels",
-        "Doorbells",
-        "Sleigh bells",
-        "Schnitzel with noodles",
-        "Wild geese that fly with the moon on their wings",
-        "Girls in white dresses with blue satin sashes",
-        "Snowflakes that stay on my nose and eyelashes",
-        "Silver-white winters that melt into springs",
-    ]
-
-    const [myFavoriteThings, setMyFavoriteThing] = useState([]);
-
-    function addFavoriteThing() {
-        setMyFavoriteThing(
-            (prevFavoriteThing) => {
-                return [
-                    ...prevFavoriteThing,
-                    favoriteThingsSong[prevFavoriteThing.length]
-                ]
-                
-            }
-        )
-    }
-
-    const favoriteThing = myFavoriteThings.map((item) =>
-        <li key={item}>{item}</li>
-    )
-
-
+    ///////////////////////////////////////////////////////////////////////////////////
 
 
 
     return (
         <>
-            <form onSubmit={handleSubmit} className="flex justify-center items-center m-10">
+            <form action={handleSubmit} className="flex justify-center items-center m-10">
                 <input
                     aria-label="Add ingredient"
                     type="text"
@@ -111,46 +65,69 @@ const AddIngredient = (props) => {
                 { ingredientsListItems }
             </ul>
 
-            <div className="bg-black p-4 flex flex-col items-center justify-center">
-                <h1 className="text-white text-4xl font-bold mb-3">Count</h1>
-                <div className="flex items-end justify-center">
-                    <button 
-                        onClick={handleSubtract}
-                        className="z-10 rounded-full text-white bg-gray-400 w-16 h-16 text-3xl font-semibold"
-                        aria-label="Decrease count"
-                    >-</button>
-                    <h2 className="mx-[-16px] flex justify-center text-4xl rounded-full font-semibold content-center items-center bg-white w-26 h-26">{count}</h2>
-                    <button 
-                        onClick={handleAdd} 
-                        className="z-10 rounded-full bg-gray-400 text-white w-16 h-16 text-3xl font-semibold"
-                        aria-label="Increase count"
-                    >+</button>
-                </div>
+            <section>
+                <h1>SignUp Form</h1>
+                <form action={handleForm} className="flex flex-col gap-2 bg-black text-white p-8">
+                    <label htmlFor="username">Username</label>
+                    <input type="text" name="username" id="username" className="border-2 border-white" />
 
-                <h1 className="mt-12 text-white text-4xl font-bold mb-3">Do I feel like going out tonight?</h1>
-                <button
-                    className="flex justify-center text-4xl rounded-full font-semibold content-center items-center bg-white w-26 h-26"
-                    onClick={handleGoingOut}
-                    aria-label={`The current answer is ${isGoingOutAnswer}`}
-                >{isGoingOutAnswer}</button>
+                    <label htmlFor="password">Password</label>
+                    <input type="password" name="password" id="password" className="border-2 border-white"/>
 
-                <h1 className="mt-12 text-white text-4xl font-bold mb-3">My Favorite things</h1>
-                <button
-                    className="flex justify-center text-xl rounded-xl font-semibold content-center items-center bg-white p-6"
-                    onClick={addFavoriteThing}
-                >Add favorite thing</button>
-                <section
-                    aria-live="polite"
-                >
-                    <ul 
-                        className="text-white text-xl m-4 funt-semibold list-disc w-full"
-                    >
-                      {favoriteThing}  
-                    </ul>
-                </section>
-            </div>
-        
-        
+                    <label htmlFor="description">Description</label>
+                    <textarea name="description" id="description" className="border-2 border-white">This is a description</textarea>
+
+                    <fieldset className="flex flex-col">
+                        <legend>Employment Status</legend>
+                        
+                        <label htmlFor="unemployed">
+                            <input className="border border-2 border-white" type="radio" name="employmentStatus" id="unemployed" value="unemployed" defaultChecked={true}/>    
+                        Unemployed</label>
+                        
+                        
+                        <label htmlFor="partTime">
+                            <input className="border border-2 border-white" type="radio" name="employmentStatus" id="partTime" value="partTime"/>    
+                        Part-time</label>
+                        
+                        
+                        <label htmlFor="fullTime">
+                            <input className="border border-2 border-white" type="radio" name="employmentStatus" id="fullTime" value="fullTime" />    
+                        Full-time</label>
+                    </fieldset>
+
+                    <fieldset className="flex flex-col">
+                        <legend>Dietary Restriction</legend>
+                        <label>
+                            <input type="checkbox" name="dietaryRestrictions" value="kosher"/>
+                            Kosher
+                        </label>
+                        <label>
+                            <input type="checkbox" name="dietaryRestrictions" value="vegan"/>
+                            Vegan
+                        </label>
+                        <label>
+                            <input type="checkbox" name="dietaryRestrictions" value="veggie"/>
+                            Veggie
+                        </label>
+                    </fieldset>
+
+                    <label htmlFor="favColor">What's your favorite color?</label>
+                    <select required name="favColor" id="favColor" className="border-2 border-white">
+                        <option value="" disabled>-- Choose a color --</option>
+                        <option value="Red">Red</option>
+                        <option value="Orange">Orange</option>
+                        <option value="Green">Green</option>
+                        <option value="Purple">Purple</option>
+                        <option value="Yellow">Yellow</option>
+                        <option value="Blue">Blue</option>
+                        <option value="Lila">Lila</option>
+                        <option value="Indigo">Indigo</option>
+                    </select>
+
+                    <button className="border-2 border-white">Submit</button>
+
+                </form>
+            </section>
         </>
         
      );
