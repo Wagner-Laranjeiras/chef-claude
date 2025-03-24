@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const AddIngredient = (props) => {
-    const [ingredients, setIngredients] = useState( ['Chicken', 'Oregano', 'Tomatoes'] )
+    const [ingredients, setIngredients] = useState( [] )
     const ingredientsListItems = ingredients.map( (ingredient) => {
         return <li>{ ingredient }</li>
     })
@@ -69,8 +69,6 @@ const AddIngredient = (props) => {
     const [myFavoriteThings, setMyFavoriteThing] = useState([]);
 
     function addFavoriteThing() {
-        if ()
-
         setMyFavoriteThing(
             (prevFavoriteThing) => {
                 return [
@@ -109,7 +107,7 @@ const AddIngredient = (props) => {
                     onClick={removeIngredient}
                 >- Remove Ingredient</button>
             </form>
-            <ul className="flex flex-col m-10 bg-amber-200">
+            <ul className="flex flex-col m-10 bg-amber-200 list-disc">
                 { ingredientsListItems }
             </ul>
 
@@ -138,7 +136,6 @@ const AddIngredient = (props) => {
 
                 <h1 className="mt-12 text-white text-4xl font-bold mb-3">My Favorite things</h1>
                 <button
-                    id="favoriteThingsButton"
                     className="flex justify-center text-xl rounded-xl font-semibold content-center items-center bg-white p-6"
                     onClick={addFavoriteThing}
                 >Add favorite thing</button>
