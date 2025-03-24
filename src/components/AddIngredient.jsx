@@ -28,14 +28,8 @@ const AddIngredient = (props) => {
     }
     ///////////////////////////////////////////////////////////////////////////////////
     function handleForm(formData) {
-        const email = formData.get('username');
-        const status = formData.get('employmentStatus');
-        const dietaryRestrictions = formData.getAll('dietaryRestrictions');
-        const favColor = formData.get('favColor');
-        console.log(favColor)
-        console.log(dietaryRestrictions);
-        console.log(status);
-        console.log(email);
+        const form = Object.fromEntries(formData);
+        console.log(form);
 
     }
     ///////////////////////////////////////////////////////////////////////////////////
