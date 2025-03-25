@@ -2,8 +2,10 @@ import { useState } from "react";
 
 const AddIngredient = (props) => {
     const [ingredients, setIngredients] = useState( [] )
+    const minimalIngredientNumber = 4;
+    const hasIngredient = ingredients.length > 0;
     const ingredientsListItems = ingredients.map( (ingredient) => {
-        return <li key={ingredient}>{ ingredient }</li>
+        return <li key={ingredient} className="mb-4">{ ingredient }</li>
     })
 
     function handleSubmit(formData) {
@@ -26,17 +28,6 @@ const AddIngredient = (props) => {
             prevIngredients.filter(ingredient => ingredient !== ingredientToRemove)
         )
     }
-    ///////////////////////////////////////////////////////////////////////////////////
-    function handleForm(formData) {
-        const form = Object.fromEntries(formData);
-        const dietaryData = formData.getAll('dietaryRestrictions');
-        const allData = {
-            ...form,
-            dietaryData
-        }
-        console.log(allData);
-    }
-    ///////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -59,72 +50,20 @@ const AddIngredient = (props) => {
                     onClick={removeIngredient}
                 >- Remove Ingredient</button>
             </form>
-            <ul className="flex flex-col m-10 bg-amber-200 list-disc">
+            { hasIngredient ? <p className="mx-10 text-3xl font-bold">Ingredients on hand</p> : null }
+            <ul className="flex flex-col mx-16 my-6 list-disc text-gray-600 font-semibold tracking-wide">
                 { ingredientsListItems }
             </ul>
+            { ingredients.length > minimalIngredientNumber ? (
+                <div className="flex justify-around items-center max-w-3xl mx-auto bg-blue-100 rounded-lg p-8">
+                    <div className="flex flex-col gap-4">
+                        <span className="font-semibold text-xl">Ready for a recipe?</span>
+                        <span className="text-gray-600">Generate a recipe from your list of ingredients</span>
+                    </div>    
+                    <button className="text-xl text-white font-medium rounded-lg bg-orange-400 px-6 py-2">Get a recipe</button>
+                </div>
+            ) : null }
 
-            <section>
-                <h1>SignUp Form</h1>
-                <form action={handleForm} className="flex flex-col gap-2 bg-black text-white p-8">
-                    <label htmlFor="username">Username</label>
-                    <input type="text" name="username" id="username" className="border-2 border-white" />
-
-                    <label htmlFor="password">Password</label>
-                    <input type="password" name="password" id="password" className="border-2 border-white"/>
-
-                    <label htmlFor="description">Description</label>
-                    <textarea name="description" id="description" className="border-2 border-white"></textarea>
-
-                    <fieldset className="flex flex-col">
-                        <legend>Employment Status</legend>
-                        
-                        <label htmlFor="unemployed">
-                            <input className="border-2 border-white" type="radio" name="employmentStatus" id="unemployed" value="unemployed" defaultChecked={true}/>    
-                        Unemployed</label>
-                        
-                        <label htmlFor="partTime">
-                            <input className="border-2 border-white" type="radio" name="employmentStatus" id="partTime" value="partTime"/>    
-                        Part-time</label>
-                        
-                        
-                        <label htmlFor="fullTime">
-                            <input className="border-2 border-white" type="radio" name="employmentStatus" id="fullTime" value="fullTime" />    
-                        Full-time</label>
-                    </fieldset>
-
-                    <fieldset className="flex flex-col">
-                        <legend>Dietary Restriction</legend>
-                        <label>
-                            <input type="checkbox" name="dietaryRestrictions" value="kosher"/>
-                            Kosher
-                        </label>
-                        <label>
-                            <input type="checkbox" name="dietaryRestrictions" value="vegan"/>
-                            Vegan
-                        </label>
-                        <label>
-                            <input type="checkbox" name="dietaryRestrictions" value="veggie"/>
-                            Veggie
-                        </label>
-                    </fieldset>
-
-                    <label htmlFor="favColor">What's your favorite color?</label>
-                    <select required name="favColor" id="favColor" className="border-2 border-white">
-                        <option value="" disabled>-- Choose a color --</option>
-                        <option value="Red">Red</option>
-                        <option value="Orange">Orange</option>
-                        <option value="Green">Green</option>
-                        <option value="Purple">Purple</option>
-                        <option value="Yellow">Yellow</option>
-                        <option value="Blue">Blue</option>
-                        <option value="Lila">Lila</option>
-                        <option value="Indigo">Indigo</option>
-                    </select>
-
-                    <button className="border-2 border-white">Submit</button>
-
-                </form>
-            </section>
         </>
         
      );

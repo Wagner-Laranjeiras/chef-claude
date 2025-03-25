@@ -2,7 +2,7 @@ import chefClaudeLogo from '../images/chef-claude-icon.png';
 
 const Header = () => {
   return ( 
-        <header className='flex gap-4 items-center justify-center p-6 border-b-2 border-blue-300 shadow-sm bg-blue-300'>
+        <header className='flex gap-4 items-center justify-center p-6 border-b-2 border-blue-200 shadow-sm bg-blue-100'>
             <img 
                 src={chefClaudeLogo} 
                 alt='chef claude logo'
