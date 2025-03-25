@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Count from "./Count";
 
 const AddIngredient = (props) => {
     const [ingredients, setIngredients] = useState( [] )
@@ -30,17 +31,6 @@ const AddIngredient = (props) => {
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
-    const [count, setCount ] = useState(0);
-
-    function handleAdd() {
-        console.log("Subtracted.")
-        setCount((prevCount) => prevCount + 1);
-    }
-
-    function handleSubtract() {
-        console.log("Added.")
-        setCount((prevCount) => prevCount - 1);
-    }
     ////////////////////////////////////////////////////////////////////////////////////////////////
     const [isGoingOut, setIsGoingOut] = useState(false);
     let isGoingOutAnswer = isGoingOut ? "Yes" : "Nop";
@@ -86,7 +76,7 @@ const AddIngredient = (props) => {
 
 
 
-
+    const [count, setCount ] = useState(0);
 
     return (
         <>
@@ -112,21 +102,9 @@ const AddIngredient = (props) => {
             </ul>
 
             <div className="bg-black p-4 flex flex-col items-center justify-center">
-                <h1 className="text-white text-4xl font-bold mb-3">Count</h1>
-                <div className="flex items-end justify-center">
-                    <button 
-                        onClick={handleSubtract}
-                        className="z-10 rounded-full text-white bg-gray-400 w-16 h-16 text-3xl font-semibold"
-                        aria-label="Decrease count"
-                    >-</button>
-                    <h2 className="mx-[-16px] flex justify-center text-4xl rounded-full font-semibold content-center items-center bg-white w-26 h-26">{count}</h2>
-                    <button 
-                        onClick={handleAdd} 
-                        className="z-10 rounded-full bg-gray-400 text-white w-16 h-16 text-3xl font-semibold"
-                        aria-label="Increase count"
-                    >+</button>
-                </div>
-
+                
+                <Count count={count} setCount={setCount}/>
+                
                 <h1 className="mt-12 text-white text-4xl font-bold mb-3">Do I feel like going out tonight?</h1>
                 <button
                     className="flex justify-center text-4xl rounded-full font-semibold content-center items-center bg-white w-26 h-26"
