@@ -29,8 +29,12 @@ const AddIngredient = (props) => {
     ///////////////////////////////////////////////////////////////////////////////////
     function handleForm(formData) {
         const form = Object.fromEntries(formData);
-        console.log(form);
-
+        const dietaryData = formData.getAll('dietaryRestrictions');
+        const allData = {
+            ...form,
+            dietaryData
+        }
+        console.log(allData);
     }
     ///////////////////////////////////////////////////////////////////////////////////
 
@@ -69,23 +73,22 @@ const AddIngredient = (props) => {
                     <input type="password" name="password" id="password" className="border-2 border-white"/>
 
                     <label htmlFor="description">Description</label>
-                    <textarea name="description" id="description" className="border-2 border-white">This is a description</textarea>
+                    <textarea name="description" id="description" className="border-2 border-white"></textarea>
 
                     <fieldset className="flex flex-col">
                         <legend>Employment Status</legend>
                         
                         <label htmlFor="unemployed">
-                            <input className="border border-2 border-white" type="radio" name="employmentStatus" id="unemployed" value="unemployed" defaultChecked={true}/>    
+                            <input className="border-2 border-white" type="radio" name="employmentStatus" id="unemployed" value="unemployed" defaultChecked={true}/>    
                         Unemployed</label>
                         
-                        
                         <label htmlFor="partTime">
-                            <input className="border border-2 border-white" type="radio" name="employmentStatus" id="partTime" value="partTime"/>    
+                            <input className="border-2 border-white" type="radio" name="employmentStatus" id="partTime" value="partTime"/>    
                         Part-time</label>
                         
                         
                         <label htmlFor="fullTime">
-                            <input className="border border-2 border-white" type="radio" name="employmentStatus" id="fullTime" value="fullTime" />    
+                            <input className="border-2 border-white" type="radio" name="employmentStatus" id="fullTime" value="fullTime" />    
                         Full-time</label>
                     </fieldset>
 
