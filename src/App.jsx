@@ -51,7 +51,6 @@ function App() {
       <Header />
       <main>
         <AddIngredient />
-
         <section>
           <div>
             { allPads }
