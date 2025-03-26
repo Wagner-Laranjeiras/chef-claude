@@ -22,9 +22,7 @@ function App() {
   function turnOff() {
     setPadsArr(
       (prevPads) => prevPads.map(
-        (prevPadItem) => (
-          { ...prevPadItem, on: false }
-        )
+        (prevPadItem) => ( { ...prevPadItem, on: false } )
       )
     )
   }
@@ -32,12 +30,10 @@ function App() {
   function turnOn() {
     setPadsArr(
       (prevPads) => prevPads.map(
-        (prevPadItem) => (
-          { ...prevPadItem, on: true }
-        )
+        (prevPadItem) => ( { ...prevPadItem, on: true } )
       )
     )
-
+ 
   }
   
   const allPads = padsArr.map(
