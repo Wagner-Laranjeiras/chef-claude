@@ -1,8 +1,4 @@
-import { useState } from "react";
-
-const AddIngredient = (props) => {
-    const [ingredients, setIngredients] = useState( [] );
-    
+const AddIngredient = ({ hasIngredient, setIngredients }) => {
     function handleSubmit(formData) {
         const newIngredient = formData.get('ingredient');
 
@@ -13,17 +9,6 @@ const AddIngredient = (props) => {
             ]       
         )
     }
-
-    // function removeIngredient(e) {
-    //     const formData = new FormData(e.currentTarget);
-    //     e.preventDefault();
-    //     const ingredientToRemove = formData.get('ingredient');
-    //     console.log('remove ingredient');
-    //     console.log('ingredient: ', ingredientToRemove)
-    //     setIngredients((prevIngredients) => 
-    //         prevIngredients.filter(ingredient => ingredient !== ingredientToRemove)
-    //     )
-    // }
 
     return (
         <>
@@ -42,7 +27,7 @@ const AddIngredient = (props) => {
                 { hasIngredient ? (
                     <button 
                         className="py-2 px-8 m-1 border-2 bg-red-400 text-white rounded-lg text-sm"
-                        onClick={removeIngredient}
+                        //onClick={removeIngredient}
                         type="button"
                     >- Remove Ingredient</button>
                 ) : null }

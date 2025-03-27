@@ -1,7 +1,5 @@
-const ListIngredients = (props) => {
-    const hasIngredient = ingredients.length > 0;
-
-    const ingredientsListItems = ingredients.map( (ingredient) => {
+const ListIngredients = ({allIngredients, hasIngredient }) => {
+    const ingredientsListItems = allIngredients.map( (ingredient) => {
         return <li key={ingredient} className="mb-4">{ ingredient }</li>
     })
 

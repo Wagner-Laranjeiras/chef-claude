@@ -1,8 +1,11 @@
-const GetRecipe = (props) => {
+const GetRecipe = ({ allIngredients, setIsRecipeShown }) => {
     const minimalIngredientNumber = 4;
+    const showRecipe = () => (
+        setIsRecipeShown((prevStatus) => !prevStatus)
+      )
 
     return ( 
-        { ingredients.length > minimalIngredientNumber ? (
+        allIngredients.length > minimalIngredientNumber ? (
             <div className="flex justify-around items-center max-w-4xl mx-auto bg-blue-100 rounded-lg p-8">
                 <div className="flex flex-col gap-4">
                     <span className="font-semibold text-xl">Ready for a recipe?</span>
@@ -13,7 +16,7 @@ const GetRecipe = (props) => {
                     onClick={showRecipe}
                 >Get a recipe</button>
             </div>
-        ) : null }
+        ) : null
      );
 }
  

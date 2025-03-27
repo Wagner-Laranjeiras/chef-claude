@@ -1,6 +1,4 @@
-const ListRecipe = (props) => {
-    const [isRecipeShown, setIsRecipeShown] = useState(false);
-    
+const ListRecipe = ({ isRecipeShown }) => {
     return ( 
         <section>
                 { isRecipeShown ? (
