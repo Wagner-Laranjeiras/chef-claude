@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import Header from "./components/Header"
 import AddIngredient from "./components/AddIngredient"
@@ -7,8 +8,8 @@ import GetRecipe from "./components/GetRecipe";
 import ListRecipe from "./components/ListRecipe";
 
 function App() {
-  const [ingredients, setIngredients] = useState( [] );
-  const [isRecipeShown, setIsRecipeShown] = useState( false );
+  const [ingredients, setIngredients] = useState( ['Beef', 'Tomatoes', 'Potatoes', 'Sauce', 'Cheese'] );
+  const [recipe, setRecipe] = useState('');
   const hasIngredient = ingredients.length > 0;
   const minimalIngredientNumber = 4;
 
@@ -21,14 +22,19 @@ function App() {
           setIngredients={setIngredients}
         />
         {
-          hasIngredient ? <ListIngredients allIngredients={ingredients} /> : null
+          hasIngredient ? <ListIngredients  allIngredients={ingredients} /> : null
         }
         {
-          ingredients.length > minimalIngredientNumber ? <GetRecipe setIsRecipeShown={setIsRecipeShown} /> : null
+          ingredients.length > minimalIngredientNumber ? <GetRecipe 
+                                                            allIngredients={ingredients} 
+                                                            setRecipe={setRecipe}
+                                                          /> : null
         }
         {
-          isRecipeShown ? <ListRecipe /> : null
+          recipe ? <ListRecipe recipe={recipe}  /> : null
         }
+        <div>
+        </div>
       </main>
     </>
   )

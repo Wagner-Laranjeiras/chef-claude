@@ -1,7 +1,6 @@
 const AddIngredient = ({ hasIngredient, setIngredients }) => {
     function handleSubmit(formData) {
         const newIngredient = formData.get('ingredient');
-
         setIngredients((prevIngredients) =>
             [
                 newIngredient,
@@ -21,12 +20,12 @@ const AddIngredient = ({ hasIngredient, setIngredients }) => {
                     className="w-3/5 max-w-5xl border-2 p-1 m-1 border-blue-900 rounded-lg shadow-sm" 
                 />
                 <button 
-                    className="py-2 px-8 m-1 border-2 bg-blue-900 text-white rounded-lg text-sm"
+                    className="py-2 px-8 m-1 border-2 bg-blue-900 text-white rounded-lg text-sm cursor-pointer"
                     type="submit"
                 >+ Add Ingredient</button>
                 { hasIngredient ? (
                     <button 
-                        className="py-2 px-8 m-1 border-2 bg-red-400 text-white rounded-lg text-sm"
+                        className="py-2 px-8 m-1 border-2 bg-red-400 text-white rounded-lg text-sm cursor-pointer"
                         //onClick={removeIngredient}
                         type="button"
                     >- Remove Ingredient</button>

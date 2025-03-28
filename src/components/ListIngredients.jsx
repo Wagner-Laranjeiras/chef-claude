@@ -1,7 +1,11 @@
+import { v4 as uuidv4 } from "uuid";
+
 const ListIngredients = ({ allIngredients }) => {
     const ingredientsListItems = allIngredients.map( (ingredient) => {
-        return <li key={ingredient} className="mb-4">{ ingredient }</li>
+        return <li key={uuidv4()} id={uuidv4()} className="mb-4">{ ingredient }</li>
     })
+
+    console.log('ingredientsListItems ', ingredientsListItems);
 
     return ( 
         <section>
